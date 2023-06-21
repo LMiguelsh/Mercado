@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!--- Implementação do módulo cliente (formulário)-->
+
+    <h1>Tela de cadastro</h1>
+
+    <p>Preencha os a seguir e clique em Calcular valor...</p>
+
+    <form id = "myForm">
+
+        <label for = "nome">Nome: </label>
+        <input type = "text" id = "nome" name = "nome">
+
+        <label for = "email">Email: </label>
+        <input type = "text" id = "email" email = "email">
+        <br>
+        <img src="produto1.jpg"  width="50" height="60">
+        <br>
+        <label for = "maca">Maçã valor 2 reais, coloque a quantidade: </label>
+        <input type = "text" id = "maca" maca = "maca">
+        <br>
+        <img src="produto2.jpg"  width="50" height="60">
+        <br>
+        <label for = "banana">Banana valor 2 reais, coloque a quantidade: </label>
+        <input type = "text" id = "banana" banana = "banana">
+        <br>
+        <img src="produto3.jpg"  width="50" height="60">
+        <label for = "laranja">Laranja valor 1 real, coloque a quantidade: </label>
+        <input type = "text" id = "laranja" laranja = "laranja">
+        <br>
+        <img src="produto4.jpg"  width="50" height="60">
+        <label for = "mamao">Mamão valor 3 reais, coloque a quantidade: </label>
+        <input type = "text" id = "mamao" mamao = "mamao">
+        <br>
+        <img src="produto5.jpg"  width="50" height="60">
+        <label for = "melancia">Melancia valor 20 reais, coloque a quantidade: </label>
+        <input type = "text" id = "melancia" melancia = "melancia">
+
+        <input type = "submit" value = "Calcular valor">
+
+
+
+    </form>
+
+    <script>
+        function Total(qtd1, qtd2, qtd3, qtd4, qtd5) {
+            var Orcamento = (2*qtd1) + (2*qtd2) + (1*qtd3) + (3*qtd4) + (20*qtd5);
+            return Orcamento;
+        }
+        // Construindo a string com o endereço do servidor
+
+        document.getElementById("myForm").addEventListener("submit", 
+        function(event) {
+            event.preventDefault();
+            var Nome = document.getElementById("nome").value;
+            var Email = document.getElementById("email").value;
+            var Maca = document.getElementById("maca").value;
+            var Banana = document.getElementById("banana").value;
+            var Laranja = document.getElementById("laranja").value;
+            var Mamao = document.getElementById("mamao").value;
+            var Melancia = document.getElementById("melancia").value;
+            var Orcamento = Total(Maca, Banana, Laranja, Mamao, Melancia);
+            
+
+
+            // Montando a string
+
+            var str = "http://localhost:8080";
+                str = str + "/servidor.js?";
+                str = str + "nome=" + Nome + "&";
+                str = str + "email=" + Email + "&";
+                str = str + "maca=" + Maca + "&";
+                str = str + "banana=" + Banana + "&";
+                str = str + "laranja=" + Laranja + "&";
+                str = str + "mamao=" + Mamao + "&";
+                str = str + "melancia=" + Melancia + "&";
+                str = str + "orcamento=" + Orcamento;
+
+            window.location.href = str; // redirecionando para a página cujo endereço está em str
+        });
+
+
+
+
+    </script>
+
+
+
+
+
+</body>
+</html>
